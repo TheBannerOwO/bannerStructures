@@ -81,7 +81,6 @@ Node *linked_list_get(LinkedList *list, int index){
     return node;
 }
 
-
 int linked_list_destroy(LinkedList *list){
     if(!list->node_amount){
         free(list);
@@ -95,7 +94,6 @@ int linked_list_destroy(LinkedList *list){
     return 0;
 }
 
-
 int linked_list_clean(LinkedList *list){
     if(!list->node_amount) return 0;
 
@@ -104,7 +102,6 @@ int linked_list_clean(LinkedList *list){
     node_destroy_chain(list, tail);
     return 0;
 }
-
 
 int node_destroy_chain(LinkedList *list, Node *node){
     if (node->next) node_destroy_recursive(list, node->next);
