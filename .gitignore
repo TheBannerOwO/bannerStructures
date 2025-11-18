@@ -1,2 +1,4 @@
 lib/
 obj/
+tests/*.out
+tests/*.log

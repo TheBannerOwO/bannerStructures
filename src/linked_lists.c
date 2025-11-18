@@ -4,8 +4,12 @@
 
 LinkedList *linked_list_create(){
 
-    LinkedList *list = calloc(1, sizeof(LinkedList));
+    LinkedList *list = malloc(sizeof(LinkedList));
     if (!list) return NULL;
+
+    list->head = NULL;
+    list->tail = NULL;
+    list->node_amount = 0;
 
     return list;
 }
@@ -13,7 +17,7 @@ LinkedList *linked_list_create(){
 
 Node *node_create(void *data, size_t data_size){
 
-    if (data_size <= 0 || !data) return RES_INVALIDPARAM;
+    if (data_size <= 0 || !data) return NULL;
 
     Node *node = calloc(1, sizeof(Node));
     if (!node) return NULL;
@@ -129,11 +133,10 @@ int node_list_destroy(LinkedList *list){
     // Detaching node chain from list
     list->tail = NULL;
     list->head = NULL;
-    list->node_amount = 0;
-
+    
     for (int i = 0; i < list->node_amount; i++){
         free(node->data);
-
+        
         if (node->next) {
             node = node->next;
             free(node->previous);
@@ -141,6 +144,8 @@ int node_list_destroy(LinkedList *list){
             free(node);
         }
     }
+
+    list->node_amount = 0;
 
     // OLD RECURSIVE IMPLEMENTATION
     // if (node->next) node_list_destroy(list, node->next);
