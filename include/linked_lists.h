@@ -8,18 +8,17 @@
 typedef struct Node Node;
 typedef struct LinkedList LinkedList;
 
-struct Node{
-    Node *previous;
-    void *data;
-    Node *next;
+struct Node {
+  Node *previous;
+  void *data;
+  Node *next;
 };
 
-struct LinkedList{
-    Node *head;
-    Node *tail;
-    int node_amount;
+struct LinkedList {
+  Node *head;
+  Node *tail;
+  int node_amount;
 };
-
 
 LinkedList *linked_list_create();
 Node *node_create(void *data, size_t data_size);
@@ -31,7 +30,6 @@ int linked_list_destroy(LinkedList *list);
 int linked_list_clean(LinkedList *list);
 int node_list_destroy(LinkedList *list);
 int node_destroy(Node *node);
-
 
 /*
 TODOs...
